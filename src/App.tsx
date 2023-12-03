@@ -1,11 +1,8 @@
-import "./App.css";
+// import "./App.css";
+import InitHome from "./pages";
 
 function App() {
-  return (
-    <>
-      <div>Wello</div>
-    </>
-  );
+  return <InitHome />;
 }
 
 export default App;
