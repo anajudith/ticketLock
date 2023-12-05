@@ -1,8 +1,6 @@
 export interface ISearch {
   busca?: string;
   setBusca: React.Dispatch<React.SetStateAction<string>>;
-  //   selectedLocation: string;
-  //   setSelectedLocation?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface IShowDetails {
