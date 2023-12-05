@@ -5,29 +5,48 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Chevrolet from "../../../public/images/pitty.jpeg";
+import Chevrolet from "../../images/pitty.jpeg";
+import { useNavigate } from "react-router-dom";
 
-export default function CardShows() {
+interface ICardShows {
+  id?: string;
+  title: string;
+  description: string;
+}
+
+export default function CardShows({ title, description, id }: ICardShows) {
+  const navigate = useNavigate();
+
+  const handleLearnMore = () => {
+    navigate(`/shows/${id}`);
+  };
+
   return (
-    <div style={{ margin: "5%" }}>
-      <Card sx={{ maxWidth: 300 }}>
+    <div className="m-[5%] min-w-[200px]  min-h-[50px] items-center justify-center flex content-center">
+      <Card sx={{ maxWidth: 250, height: 290 }}>
         <CardMedia
           component="img"
           height="140"
           image={Chevrolet}
           alt="Chevrolet"
         />
-        <CardContent>
+        <CardContent className="h-[110px]">
           <Typography gutterBottom variant="h5" component="div">
-            Titulo do show
+            {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Description show
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            className=" overflow-hidden line-clamp-2 min-h-[2px] leading-[1rem]"
+          >
+            {description}
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Share</Button>
-          <Button size="small">Learn More</Button>
+          <Button size="small" onClick={handleLearnMore}>
+            Learn More
+          </Button>
         </CardActions>
       </Card>
     </div>
