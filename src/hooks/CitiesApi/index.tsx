@@ -1,23 +1,34 @@
+import React from "react";
+
 interface City {
   nome: string;
 }
-const ApiCity =
-  "https://servicodados.ibge.gov.br/api/v1/localidades/estados/MG/municipios";
-const CitiesApi = async (): Promise<string[]> => {
-  try {
-    const response = await fetch(ApiCity);
-    if (!response.ok) {
-      throw new Error("Erro ao obter os dados dos municípios");
-    }
-    const data = await response.json();
 
-    const cityNames = data.map((city: City) => city.nome);
+export function useApiCity() {
+  const [cities, setCities] = React.useState<string[]>([]);
+  React.useEffect(() => {
+    const ApiCity =
+      "https://servicodados.ibge.gov.br/api/v1/localidades/estados/MG/municipios";
 
-    return cityNames;
-  } catch (error) {
-    console.error("Ocorreu um erro:", error);
-    return [];
-  }
-};
+    const fetchCities = async (): Promise<void> => {
+      try {
+        const response = await fetch(ApiCity);
+        if (!response.ok) {
+          throw new Error("Erro ao obter os dados dos municípios");
+        }
+        const data = await response.json();
 
-export default CitiesApi;
+        const cityNames = data.map((city: City) => city.nome);
+        setCities(cityNames);
+      } catch (error) {
+        console.error("Ocorreu um erro:", error);
+      }
+    };
+
+    fetchCities();
+  }, []);
+
+  return {
+    cities,
+  };
+}
