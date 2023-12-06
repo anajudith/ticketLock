@@ -1,20 +1,20 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Chevrolet from "../../images/pitty.jpeg";
+import {
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  Button,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ICardShows } from "./CardShows.structure";
 
-interface ICardShows {
-  id?: string;
-  title: string;
-  description: string;
-}
-
-export default function CardShows({ title, description, id }: ICardShows) {
+export default function CardShows({
+  title,
+  description,
+  id,
+  image,
+}: ICardShows) {
   const navigate = useNavigate();
 
   const handleLearnMore = () => {
@@ -23,13 +23,8 @@ export default function CardShows({ title, description, id }: ICardShows) {
 
   return (
     <div className="m-[5%] min-w-[200px]  min-h-[50px] items-center justify-center flex content-center">
-      <Card sx={{ maxWidth: 250, height: 290 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={Chevrolet}
-          alt="Chevrolet"
-        />
+      <Card sx={{ maxWidth: 260, height: 290 }}>
+        <CardMedia component="img" height="140" image={image} alt="Chevrolet" />
         <CardContent className="h-[110px]">
           <Typography gutterBottom variant="h5" component="div">
             {title}
@@ -42,7 +37,7 @@ export default function CardShows({ title, description, id }: ICardShows) {
             {description}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions className="flex  justify-between">
           <Button size="small">Share</Button>
           <Button size="small" onClick={handleLearnMore}>
             Learn More

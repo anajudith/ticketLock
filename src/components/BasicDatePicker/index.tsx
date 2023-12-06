@@ -3,20 +3,25 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { pt } from "date-fns/locale";
+import React from "react";
+import { IProps } from "./BasicDatePicker.structure";
 
-interface IProps {
-  value: Date;
-}
+export default function BasicDatePicker({ setValue, style }: IProps) {
+  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
-export default function BasicDatePicker({ value }: IProps) {
+  const handleDateChange = (date: Date | null) => {
+    setSelectedDate(date);
+    setValue(date);
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={pt}>
       <DemoContainer components={["DatePicker"]}>
         <DemoItem>
           <DesktopDatePicker
-            defaultValue={new Date("11/11/1111")}
-            value={value}
-            className="bg-white w-[150px] text-white rounded-md"
+            sx={style}
+            value={selectedDate}
+            onChange={(date) => handleDateChange(date)}
+            className="bg-white  text-white rounded-md"
           />
         </DemoItem>
       </DemoContainer>

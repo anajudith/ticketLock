@@ -1,6 +1,7 @@
-export interface ISearch {
-  busca?: string;
-  setBusca: React.Dispatch<React.SetStateAction<string>>;
+export interface IProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onClick?: () => void;
 }
 
 export interface IShowDetails {
