@@ -45,7 +45,7 @@ class Shows {
     title: string,
     time: string,
     paymentType: string,
-    ageRating: number,
+    ageRating: string,
     description: string,
     image: string,
     address: string,
@@ -91,15 +91,38 @@ class Shows {
     }
   }
 
+  async pesquisa(date: Date | null) {
+    try {
+      // Fazer a busca levando em conta que com data e horario
+      // fazer uma regra que se nn tiver data, não tem busca.
+
+      const { data } = await supabaseApi
+        .from("shows")
+        .select("*")
+        .eq("date", date);
+
+      if (data) {
+        console.log(data);
+        return data;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  }
+
   async updateShow(
-    noteId: string,
-    isCompleted: boolean
+    id: string,
+    date: Date,
+    time: string,
+    paymentType: string
   ): Promise<IShow[] | false> {
     try {
       const { data } = await supabaseApi
         .from("shows")
-        .update({ completed: isCompleted })
-        .eq("id", noteId);
+        .update({ date, time, paymentType })
+        .eq("id", id);
 
       if (data) {
         console.log(data);

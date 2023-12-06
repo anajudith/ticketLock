@@ -3,7 +3,7 @@ export interface IShowDetails {
   title: string;
   time: string;
   paymentType: string;
-  ageRating: number;
+  ageRating: string;
   description: string;
   image: string;
   city: string;

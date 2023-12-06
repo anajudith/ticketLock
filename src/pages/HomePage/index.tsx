@@ -13,6 +13,7 @@ export default function Home() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 px-[64px] pt-[40px]">
         {filteredShows.map((show) => (
           <CardShows
+            image={show.image}
             key={show.id}
             id={show.id}
             title={show.title}

@@ -1,12 +1,11 @@
 import BasicDatePicker from "./BasicDatePicker";
 import BasicSelect from "./BasicSelect";
 import CardShows from "./CardShows";
-import Form from "./Form";
+import Form from "./FormRegisterShow";
 import Header from "./Header";
 import ShowDetails from "../pages/ShowDetailsPage";
 import InputFileUpload from "./InputFileUpload";
-import MultipleSelect from "./MultipleSelect";
-import SimpleSelect from "./SimpleSelect";
+import CustomTimeFormat from "./SelectTime";
 
 export {
   Form,
@@ -16,6 +15,5 @@ export {
   BasicSelect,
   ShowDetails,
   InputFileUpload,
-  MultipleSelect,
-  SimpleSelect,
+  CustomTimeFormat,
 };
