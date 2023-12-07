@@ -171,7 +171,6 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
               onChange={handleChange}
             />
           </Grid>
-
           <Grid item xs={12}>
             <TextField
               required
@@ -271,8 +270,14 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
           </Grid>
         </Grid>
         <div className="flex justify-between pt-[30px]">
-          <Button onClick={onClose}>Fechar</Button>
-          <Button startIcon={<Add />} onClick={submitPostShow}>
+          <Button className="bg-blue-600 text-white" onClick={onClose}>
+            Fechar
+          </Button>
+          <Button
+            className="bg-blue-600 text-white"
+            startIcon={<Add />}
+            onClick={submitPostShow}
+          >
             Cadastrar
           </Button>
         </div>

@@ -7,3 +7,4 @@ export const ageRating = [
   "16 anos",
   "18 anos",
 ];
+export const status = ["Aprovada", "Pendente", "Cancelada"];

@@ -12,9 +12,6 @@ class Shows {
       const { data } = await supabaseApi.from("shows").select();
 
       if (data) {
-        // console.log(data);
-        console.log(data, "ola service");
-
         return data;
       } else {
         return false;
@@ -91,15 +88,29 @@ class Shows {
     }
   }
 
-  async pesquisa(date: Date | null) {
+  async pesquisa(
+    eventTitle: string,
+    eventDate: Date | string | null,
+    eventTime: string
+  ): Promise<IShow[] | false> {
     try {
-      // Fazer a busca levando em conta que com data e horario
-      // fazer uma regra que se nn tiver data, não tem busca.
+      console.log(eventTitle, eventDate);
 
-      const { data } = await supabaseApi
-        .from("shows")
-        .select("*")
-        .eq("date", date);
+      let query = supabaseApi.from("shows").select("*");
+
+      if (eventTitle != "") {
+        query = query.ilike("title", `%${eventTitle}%`);
+      }
+
+      if (eventDate != "" && eventDate != null) {
+        query = query.eq("date", eventDate);
+      }
+
+      if (eventTime != "") {
+        query = query.eq("time", eventTime);
+      }
+
+      const { data } = await query;
 
       if (data) {
         console.log(data);

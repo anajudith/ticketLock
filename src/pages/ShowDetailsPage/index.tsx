@@ -1,14 +1,16 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import ShowsService from "../../service/Shows/Shows";
-// import teste from "../../images/teste.jpeg";
 import { IShowDetails } from "./ShowDetails.structure";
 import { Button } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
+import { FormEditShow } from "../../components";
+import moment from "moment";
 
 export default function ShowDetails() {
   const { id } = useParams();
   const [show, setShow] = React.useState<IShowDetails | false>();
+  const [showForm, setShowForm] = React.useState<boolean>(false);
 
   React.useMemo(() => {
     const fetchShowDetails = async () => {
@@ -30,28 +32,11 @@ export default function ShowDetails() {
     );
   }
 
-  // clicar para abrir formulario de edição.
-  // Abriu formulario
-  // pegar o id que e verificar a informação que tem e preencher
-
-  const editCard = async () => {
-    try {
-      const responseUpdate = await ShowsService.updateShow(
-        id as string,
-        show.date,
-        show.time,
-        show.paymentType
-      );
-      return responseUpdate;
-    } catch (error) {
-      console.error("Erro ao atualizar show", error);
-    }
-  };
-
-  const formattedDate = new Date(show.date).toLocaleDateString("pt-BR");
+  const formatted = moment(show.date);
+  const dataForShow = formatted.format("DD/MM/YYYY");
 
   return (
-    <div className="font-serif">
+    <div className="font-serif mb-[40px]">
       <header className="bg-black h-[90px] justify-center flex items-center text-white">
         <a href="/">Ticket Lock</a>
       </header>
@@ -72,23 +57,25 @@ export default function ShowDetails() {
         </div>
       </section>
       <div className="px-[100px] pt-[56px]">
-        <div className="flex flex-col">
-          <span className="text-4xl tracking-wide font-bold">{show.title}</span>
-          <h2 className="text-xl pt-[10px]">Data: {formattedDate}</h2>
-          <h3 className="text-sm">Hora: {show.time}</h3>
+        <div className="flex flex-col bg-slate-300 rounded-md p-4 m-4 gap-[4px]">
+          <span className="text-4xl tracking-wide  font-extralight">
+            {show.title}
+          </span>
+          <h2 className="text-xl pt-[10px]">Data: {dataForShow}</h2>
+          <h3 className="text-xl">Hora: {show.time}</h3>
           <h2 className="text-xl font-bold">
             Local: {show.city}, {show.address}
           </h2>
-          <div className="pl-[800px] flex">
+          <div className="pl-[700px] flex">
             <span className="flex">
               Classificação etária:
-              <p className="text-red-600 pl-[5px]">{show.ageRating}</p>
+              <p className="text-red-600 pl-[4px] ">{show.ageRating}</p>
             </span>
             <Button
               className="p-0 m-0 "
               size="small"
               startIcon={<CreateIcon />}
-              onClick={editCard}
+              onClick={() => setShowForm(true)}
             />
           </div>
         </div>
@@ -100,11 +87,14 @@ export default function ShowDetails() {
             {show.title}
           </span>
           <p>{show.description}</p>
-          <p className="text-xl py-[40px]">
+          <p className="text-xl text-slate-700 py-[40px] bg-">
             Forma de pagamento: {show.paymentType}
           </p>
         </div>
       </div>
+      {showForm && (
+        <FormEditShow isOpen={showForm} onClose={() => setShowForm(false)} />
+      )}
     </div>
   );
 }
