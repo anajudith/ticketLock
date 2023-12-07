@@ -63,7 +63,6 @@ class Shows {
       });
 
       if (data) {
-        console.log(data);
         return data;
       } else {
         return false;
@@ -78,7 +77,6 @@ class Shows {
       const { data } = await supabaseApi.from("shows").delete().eq("id", id);
 
       if (data) {
-        console.log(data);
         return data;
       } else {
         return false;
@@ -94,8 +92,6 @@ class Shows {
     eventTime: string
   ): Promise<IShow[] | false> {
     try {
-      console.log(eventTitle, eventDate);
-
       let query = supabaseApi.from("shows").select("*");
 
       if (eventTitle != "") {
@@ -113,7 +109,6 @@ class Shows {
       const { data } = await query;
 
       if (data) {
-        console.log(data);
         return data;
       } else {
         return false;
@@ -136,7 +131,6 @@ class Shows {
         .eq("id", id);
 
       if (data) {
-        console.log(data);
         return data;
       } else {
         return false;

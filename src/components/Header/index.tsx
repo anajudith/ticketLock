@@ -26,7 +26,6 @@ export default function Header({ setFilteredShows }: ISearch) {
           eventDate,
           eventTimeTemp
         );
-        console.log(responseGet);
 
         setFilteredShows(responseGet as IShow[]);
         return responseGet;
