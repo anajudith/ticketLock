@@ -5,8 +5,6 @@ import { IShow } from "../../service/Shows/Shows.structure";
 export function useShows() {
   const [filteredShows, setFilteredShows] = React.useState<IShow[]>([]);
 
-  const [locationList, setLocationList] = React.useState<string[]>([]);
-
   const fetchAndGetShows = React.useMemo(async () => {
     const responseGet = await ShowsService.getShow();
     if (responseGet) {
@@ -19,8 +17,6 @@ export function useShows() {
 
   return {
     filteredShows,
-    setLocationList,
-    locationList,
     fetchAndGetShows,
     setFilteredShows,
   };
