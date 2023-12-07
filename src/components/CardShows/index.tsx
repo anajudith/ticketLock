@@ -8,10 +8,13 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ICardShows } from "./CardShows.structure";
+import { SelectVariants } from "..";
+import moment from "moment";
 
 export default function CardShows({
   title,
   description,
+  date,
   id,
   image,
 }: ICardShows) {
@@ -21,11 +24,21 @@ export default function CardShows({
     navigate(`/shows/${id}`);
   };
 
+  const formatted = moment(date);
+  const dataForShow = formatted.format("DD/MM/YYYY");
+
   return (
     <div className="m-[5%] min-w-[200px]  min-h-[50px] items-center justify-center flex content-center">
-      <Card sx={{ maxWidth: 260, height: 290 }}>
+      <Card sx={{ maxWidth: 260, height: 350 }}>
         <CardMedia component="img" height="140" image={image} alt="Chevrolet" />
         <CardContent className="h-[110px]">
+          <Typography
+            gutterBottom
+            className="text-xs text-blue-600"
+            component="div"
+          >
+            {dataForShow}
+          </Typography>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
@@ -38,9 +51,9 @@ export default function CardShows({
           </Typography>
         </CardContent>
         <CardActions className="flex  justify-between">
-          <Button size="small">Share</Button>
-          <Button size="small" onClick={handleLearnMore}>
-            Learn More
+          <SelectVariants />
+          <Button className="mt-[35px] " size="small" onClick={handleLearnMore}>
+            Ler sobre
           </Button>
         </CardActions>
       </Card>

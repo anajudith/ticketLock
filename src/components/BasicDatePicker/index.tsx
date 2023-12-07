@@ -6,7 +6,11 @@ import { pt } from "date-fns/locale";
 import React from "react";
 import { IProps } from "./BasicDatePicker.structure";
 
-export default function BasicDatePicker({ setValue, style }: IProps) {
+export default function BasicDatePicker({
+  setValue,
+  style,
+  slotProps,
+}: IProps) {
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
   const handleDateChange = (date: Date | null) => {
@@ -22,6 +26,7 @@ export default function BasicDatePicker({ setValue, style }: IProps) {
             value={selectedDate}
             onChange={(date) => handleDateChange(date)}
             className="bg-white  text-white rounded-md"
+            slotProps={slotProps}
           />
         </DemoItem>
       </DemoContainer>

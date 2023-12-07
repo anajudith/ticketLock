@@ -7,8 +7,9 @@ import React from "react";
 interface IProps {
   value: string | null;
   setValue: (time: string | null) => void;
+  slotProps?: object;
 }
-export default function CustomTimeFormat({ setValue }: IProps) {
+export default function CustomTimeFormat({ setValue, slotProps }: IProps) {
   const [selectedTime, setSelectedTime] = React.useState<string | null>(
     "00:00"
   );
@@ -22,11 +23,13 @@ export default function CustomTimeFormat({ setValue }: IProps) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={["TimeField", "TimeField", "TimeField"]}>
         <TimeField
+          className="border-gray-600 border border-1"
           sx={{ width: 200 }}
           label="Horario do show"
           value={selectedTime}
           onChange={(time) => handleDateChange(time)}
           format="HH:mm"
+          slotProps={slotProps}
         />
       </DemoContainer>
     </LocalizationProvider>

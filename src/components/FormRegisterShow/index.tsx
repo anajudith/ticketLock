@@ -86,7 +86,7 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
 
   const handlePaymentSelect = (paymentType: any | null) => {
     setSelectedPayment(paymentType);
-    if (ageRating) {
+    if (paymentType) {
       setShowDetails((prevShowDetails) => ({
         ...prevShowDetails,
         paymentType: paymentType,
@@ -203,7 +203,7 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
             />
             <div>
               <TextField
-                className="w-[300px] pt-[6px]"
+                className="w-[300px] pt-[6px] "
                 required
                 id="address"
                 name="address"
@@ -216,7 +216,7 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
               />
             </div>
           </Grid>
-          <Grid item xs={12} className="flex gap-2">
+          <Grid item xs={12} className="flex gap-6">
             <BasicDatePicker
               value={selectedDate}
               setValue={handleDateChange}
@@ -226,28 +226,12 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
             <CustomTimeFormat
               value={selectedTime}
               setValue={handleTimeChange}
-            />
-
-            <Autocomplete
-              value={selectedPayment}
-              onChange={(event: any, newValue: string | null) => {
-                handlePaymentSelect(newValue);
-              }}
-              inputValue={inputValuePayment}
-              onInputChange={(event, newInputValue) => {
-                setInputValuePayment(newInputValue);
-              }}
-              id="controllable-states-demo"
-              options={PaymentMethod}
-              sx={{ width: 200, paddingTop: 1 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Pagamento" />
-              )}
+              slotProps={{ textField: { size: "medium" } }}
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <div className="w-[70%] ">
+          <Grid item xs={12}>
+            <div className=" flex gap-6 ">
               <Autocomplete
                 value={selectedAgeRating}
                 onChange={(event: any, newValue: string | null) => {
@@ -257,11 +241,27 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
                 onInputChange={(event, newInputValue) => {
                   setInputValueAge(newInputValue);
                 }}
-                id="controllable-states-demo"
+                id="ageRating"
                 options={ageRating}
                 sx={{ width: 240 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Classificação etária" />
+                )}
+              />
+              <Autocomplete
+                value={selectedPayment}
+                onChange={(event: any, newValue: string | null) => {
+                  handlePaymentSelect(newValue);
+                }}
+                inputValue={inputValuePayment}
+                onInputChange={(event, newInputValue) => {
+                  setInputValuePayment(newInputValue);
+                }}
+                id="paymentType"
+                options={PaymentMethod}
+                sx={{ width: 200 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Pagamento" />
                 )}
               />
             </div>

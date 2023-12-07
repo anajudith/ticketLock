@@ -1,6 +1,8 @@
+import { IShow } from "../../service/Shows/Shows.structure";
+
 export interface ISearch {
   busca?: string;
-  setBusca: React.Dispatch<React.SetStateAction<string>>;
+  setFilteredShows: React.Dispatch<React.SetStateAction<IShow[]>>;
 }
 
 export interface IShowDetails {
