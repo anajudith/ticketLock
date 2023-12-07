@@ -79,7 +79,6 @@ export default function ShowDetails() {
             />
           </div>
         </div>
-
         <div className="flex flex-col">
           <div className="w-[100%] border-[1px] border-slate-700 mb-[20px] " />
           <span className="text-2xl">Descrição do Show</span>

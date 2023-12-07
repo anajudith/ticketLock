@@ -186,11 +186,11 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
           <Grid item xs={12} className="flex gap-[40px]">
             <Autocomplete
               value={selectedCity}
-              onChange={(event: any, newValue: string | null) => {
+              onChange={(_event: any, newValue: string | null) => {
                 handleCityChange(newValue);
               }}
               inputValue={inputValueCity}
-              onInputChange={(event, newInputValue) => {
+              onInputChange={(_event, newInputValue) => {
                 setInputValueCity(newInputValue);
               }}
               id="city"
@@ -233,11 +233,11 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
             <div className=" flex gap-6 ">
               <Autocomplete
                 value={selectedAgeRating}
-                onChange={(event: any, newValue: string | null) => {
+                onChange={(_event: any, newValue: string | null) => {
                   handleAgeRatingSelect(newValue);
                 }}
                 inputValue={inputValueAge}
-                onInputChange={(event, newInputValue) => {
+                onInputChange={(_event, newInputValue) => {
                   setInputValueAge(newInputValue);
                 }}
                 id="ageRating"
@@ -249,11 +249,11 @@ export default function AddShowsForm({ isOpen, onClose }: IProps) {
               />
               <Autocomplete
                 value={selectedPayment}
-                onChange={(event: any, newValue: string | null) => {
+                onChange={(_event: any, newValue: string | null) => {
                   handlePaymentSelect(newValue);
                 }}
                 inputValue={inputValuePayment}
-                onInputChange={(event, newInputValue) => {
+                onInputChange={(_event, newInputValue) => {
                   setInputValuePayment(newInputValue);
                 }}
                 id="paymentType"
