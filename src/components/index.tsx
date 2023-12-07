@@ -6,6 +6,8 @@ import Header from "./Header";
 import ShowDetails from "../pages/ShowDetailsPage";
 import InputFileUpload from "./InputFileUpload";
 import CustomTimeFormat from "./SelectTime";
+import FormEditShow from "./FormEditShow";
+import SelectVariants from "./SelectMui";
 
 export {
   Form,
@@ -16,4 +18,6 @@ export {
   ShowDetails,
   InputFileUpload,
   CustomTimeFormat,
+  FormEditShow,
+  SelectVariants,
 };
