@@ -3,8 +3,6 @@ import ShowsService from "../../service/Shows/Shows";
 import { IShow } from "../../service/Shows/Shows.structure";
 
 export function useShows() {
-  const [shows, setShows] = React.useState<IShow[]>([]);
-
   const [filteredShows, setFilteredShows] = React.useState<IShow[]>([]);
 
   const [locationList, setLocationList] = React.useState<string[]>([]);
@@ -12,13 +10,12 @@ export function useShows() {
   const fetchAndGetShows = React.useMemo(async () => {
     const responseGet = await ShowsService.getShow();
     if (responseGet) {
-      setShows(responseGet);
       setFilteredShows(responseGet);
     } else {
       console.error(responseGet);
       return;
     }
-  }, [setShows, setFilteredShows]);
+  }, [setFilteredShows]);
 
   return {
     filteredShows,
@@ -26,6 +23,5 @@ export function useShows() {
     locationList,
     fetchAndGetShows,
     setFilteredShows,
-    shows,
   };
 }
