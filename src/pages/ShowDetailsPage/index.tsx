@@ -5,6 +5,9 @@ import { IShowDetails } from "./ShowDetails.structure";
 import { Button } from "@mui/material";
 import CreateIcon from "@mui/icons-material/Create";
 import { FormEditShow } from "../../components";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
+import HistoryToggleOffIcon from "@mui/icons-material/HistoryToggleOff";
+import EventNoteIcon from "@mui/icons-material/EventNote";
 import moment from "moment";
 
 export default function ShowDetails() {
@@ -41,9 +44,9 @@ export default function ShowDetails() {
         <a href="/">Ticket Lock</a>
       </header>
       <section className="bg-black h-[20%]">
-        <div className=" w-[100%] bg-red-400">
+        <div className=" w-[100%]">
           <img
-            className="h-[55%] absolute bg-cover w-[100%] blur-md"
+            className="h-[55%] absolute bg-cover w-[100%] blur-sm"
             src={show.image}
             alt={show.title}
           />
@@ -56,35 +59,35 @@ export default function ShowDetails() {
           />
         </div>
       </section>
-      <div className="px-[100px] pt-[56px]">
-        <div className="flex flex-col bg-slate-300 rounded-md p-4 m-4 gap-[4px]">
+      <div className="px-[100px] pt-[100px] flex justify-around">
+        <div className="flex flex-col w-[30%] bg-transparent border-r-4 border-blue-600  p-4 m-4 gap-[6px]">
           <span className="text-4xl tracking-wide  font-extralight">
             {show.title}
           </span>
-          <h2 className="text-xl pt-[10px]">Data: {dataForShow}</h2>
-          <h3 className="text-xl">Hora: {show.time}</h3>
-          <h2 className="text-xl font-bold">
-            Local: {show.city}, {show.address}
+          <h2 className="text-xl pt-[10px]">
+            <EventNoteIcon /> {dataForShow}
           </h2>
-          <div className="pl-[700px] flex">
-            <span className="flex">
-              Classificação etária:
-              <p className="text-red-600 pl-[4px] ">{show.ageRating}</p>
-            </span>
+          <h3 className="text-xl">
+            <HistoryToggleOffIcon /> {show.time}
+          </h3>
+          <h2 className="text-xl">
+            <FmdGoodIcon /> {show.address}
+          </h2>
+          <h2 className="text-xl ">{show.city}</h2>
+          <div className="flex text-sm">
+            <span>Classificação etária:</span>
+            <p className="text-red-600 pl-[4px] ">{show.ageRating}</p>
             <Button
-              className="p-0 m-0 "
+              className="p-0 m-0 flex"
               size="small"
               startIcon={<CreateIcon />}
               onClick={() => setShowForm(true)}
             />
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="w-[100%] border-[1px] border-slate-700 mb-[20px] " />
-          <span className="text-2xl">Descrição do Show</span>
-          <span className="text-slate-500 text-3xl pt-[30px]">
-            {show.title}
-          </span>
+        <div className="flex flex-col w-[50%] pl-[30px] pt-[10px]">
+          <span className="text-4xl pb-[10px]">Sobre o show</span>
+
           <p>{show.description}</p>
           <p className="text-xl text-slate-700 py-[40px] bg-">
             Forma de pagamento: {show.paymentType}
