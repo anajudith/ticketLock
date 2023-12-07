@@ -1,7 +1,6 @@
 # React + TypeScript + Vite
 
-Para iniciar o projeto, é necessário clonar o repositório e instalar as dependências.
-Em seguida, rodar o comando yarn dev.
+To start the project, you need to clone the repository and install the dependencies. Then run the yarn dev command.
 
 To Do: The new versions will have automated testing, map location and sharing function with other users
 
